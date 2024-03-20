@@ -15,14 +15,15 @@ void win( void ) {
 
 int main()
 {
+    int wanted = 0xdeadbeef;
     char buffer[16];
     int my_number = 0x5117;
     ignore_me_init_buffering();
-    printf("The value of 'my_number' is: 0x%x. See if you can set it to 0x%x?\n>> ", my_number, 0xa313742);
-    while(my_number != 0xa313742) {
+    printf("The value of 'my_number' is: 0x%x. See if you can set it to 0x%x?\n>> ", my_number, wanted);
+    while(my_number != wanted) {
         fflush(stdin);
         fgets(buffer, 50, stdin);
-        if (my_number == 0xa313742)
+        if (my_number == wanted)
         {
             printf("Value of 'my_number' is now: 0x%x. Well done!\n", my_number);
             system("id");
@@ -30,7 +31,7 @@ int main()
         }
         else
         {
-            printf("Incorrect. The value of 'my_number' is : 0x%x. Set it to 0x%x to pop a shell!\n>>", my_number,0xa313742);
+            printf("Incorrect. The value of 'my_number' is : 0x%x. Set it to 0x%x to pop a shell!\n>>", my_number,wanted);
         }
     }
     return 0;
